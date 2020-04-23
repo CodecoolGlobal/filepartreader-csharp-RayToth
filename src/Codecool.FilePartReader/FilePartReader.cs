@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -12,7 +13,7 @@ namespace Codecool.FilePartReader
         /// <summary>
         /// Gets file path.
         /// </summary>
-        public string FilePath { get; private set; }
+        public string FilePath { get; private set; } = string.Empty;
 
         /// <summary>
         /// Gets line to start from.
@@ -39,7 +40,16 @@ namespace Codecool.FilePartReader
         /// <param name="toLine">ToLine number of last line we include when reading</param>
         public void Setup(string filePath, int fromLine, int toLine)
         {
-            throw new NotImplementedException();
+            if (fromLine > toLine || fromLine < 1)
+            {
+                throw new ArgumentException();
+            }
+            else
+            {
+                FilePath = filePath;
+                FromLine = fromLine;
+                ToLine = toLine;
+            }
         }
 
         /// <summary>
@@ -48,7 +58,7 @@ namespace Codecool.FilePartReader
         /// <returns>The content of the whole file as a String</returns>
         public string Read()
         {
-            throw new NotImplementedException();
+            return File.ReadAllText(FilePath);
         }
 
         /// <summary>
@@ -57,7 +67,22 @@ namespace Codecool.FilePartReader
         /// <returns>The content of file between fromLine and toLine as a string</returns>
         public string ReadLines()
         {
-            throw new NotImplementedException();
+            StringBuilder result = new StringBuilder();
+            string[] lines = File.ReadAllLines(FilePath);
+
+            for (int num = FromLine - 1; num <= ToLine; num++)
+            {
+                if (num < ToLine)
+                {
+                    result.Append($"{lines[num]}\r\n");
+                }
+                else
+                {
+                    result.Append($"{lines[num]}");
+                }
+            }
+
+            return result.ToString();
         }
     }
 }
