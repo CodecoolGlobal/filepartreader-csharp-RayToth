@@ -9,6 +9,7 @@ namespace Codecool.FilePartReader.UnitTests
     /// <summary>
     /// When testing a class you should test only that specific class(unit), not the others
     /// the class may depending on
+    /// Code review can be found in the started pull request
     /// </summary>
     [TestFixture]
     public class FilePartReaderTest
