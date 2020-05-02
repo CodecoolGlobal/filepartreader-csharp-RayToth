@@ -36,7 +36,6 @@ namespace Codecool.FilePartReader.UnitTests
         [Test]
         public void GetWordsOrderedAplhabetically_UseMethod_ReturnsListWithOrderedWords()
         {
-            var orderedWordsList = _fileWorldAnalyzer.GetWordsOrderedAlphabetically();
             var expectedWordsList = new List<string>()
             {
                 "asdasdasd",
@@ -47,6 +46,8 @@ namespace Codecool.FilePartReader.UnitTests
                 "test"
             };
 
+            var orderedWordsList = _fileWorldAnalyzer.GetWordsOrderedAlphabetically();
+
             Assert.AreEqual(expectedWordsList, orderedWordsList);
         }
 
@@ -54,12 +55,13 @@ namespace Codecool.FilePartReader.UnitTests
         public void GetWordsContainingSubstring_GivenSubstring_ReturnsListWithWordsContainingSubstring()
         {
             var subString = "ol";
-            var wordsWithSubstring = _fileWorldAnalyzer.GetWordsContainingSubstring(subString);
             var expectedOutPut = new List<string>()
             {
                 "Codecool",
                 "lol"
             };
+
+            var wordsWithSubstring = _fileWorldAnalyzer.GetWordsContainingSubstring(subString);
 
             Assert.AreEqual(expectedOutPut, wordsWithSubstring);
         }
@@ -68,6 +70,7 @@ namespace Codecool.FilePartReader.UnitTests
         public void GetWordsContainingSubstring_GivenSubstringWordIsNotFound_ReturnsEmptyList()
         {
             var subString = "honolulu";
+
             var wordsWithSubstring = _fileWorldAnalyzer.GetWordsContainingSubstring(subString);
 
             Assert.IsEmpty(wordsWithSubstring);
