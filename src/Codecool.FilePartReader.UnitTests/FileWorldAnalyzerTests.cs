@@ -14,7 +14,7 @@ namespace Codecool.FilePartReader.UnitTests
         public void SetUp()
         {
             _filePartReader = new FilePartReader();
-            _filePartReader.Setup("test.txt", 1, 5);
+            _filePartReader.Setup("test.txt", 1, 6);
             _fileWorldAnalyzer = new FileWordAnalyzer(_filePartReader);
         }
 

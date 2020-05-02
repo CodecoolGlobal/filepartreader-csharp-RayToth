@@ -64,5 +64,29 @@ namespace Codecool.FilePartReader.UnitTests
 
             Assert.AreEqual(expectedMessage, ex.Message);
         }
+
+        [Test]
+        public void Read_GivenLessLinesThanTheFileHas_ReturnsAllContentAsString()
+        {
+            string expectedContent = "asdasdasd\r\nkajak\r\nCodecool\r\nlol\r\ntest\r\nkerek";
+
+            _filePartReader.Setup("test.txt", 1, 3);
+            string fileContent = _filePartReader.Read();
+
+            Assert.AreEqual(expectedContent, fileContent);
+
+        }
+
+        [Test]
+        public void ReadLines_GivenFromLineAndToLine_ReturnsTheLinesInBetween()
+        {
+            string expected = "kajak\r\nCodecool";
+
+            _filePartReader.Setup("test.txt", 2, 3);
+            string lines = _filePartReader.ReadLines();
+
+            Assert.AreEqual(expected, lines);
+
+        }
     }
 }

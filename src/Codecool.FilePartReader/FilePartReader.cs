@@ -74,9 +74,9 @@ namespace Codecool.FilePartReader
             StringBuilder result = new StringBuilder();
             string[] lines = File.ReadAllLines(FilePath);
 
-            for (int num = FromLine - 1; num <= ToLine; num++)
+            for (int num = FromLine - 1; num <= ToLine - 1; num++)
             {
-                if (num < ToLine)
+                if (num < ToLine - 1)
                 {
                     result.Append($"{lines[num]}\r\n");
                 }
