@@ -42,7 +42,7 @@ namespace Codecool.FilePartReader
         {
             if (fromLine > toLine || fromLine < 1)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("The given starting line is invalid.");
             }
             else
             {

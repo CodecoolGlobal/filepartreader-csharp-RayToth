@@ -25,19 +25,27 @@ namespace Codecool.FilePartReader.UnitTests
         }
 
         [Test]
-        public void Setup_FromLineBiggerThanToLine_ThrowsArgumentException()
+        public void Setup_FromLineBiggerThanToLine_ThrowsErrorMessage()
         {
             var fromLine = 5;
             var toLine = 3;
-            Assert.Throws<ArgumentException>(() => _filePartReader.Setup("test.txt", fromLine, toLine));
+            var expectedMessage = "The given starting line is invalid.";
+
+            var ex = Assert.Throws<ArgumentException>(() => _filePartReader.Setup("test.txt", fromLine, toLine));
+
+            Assert.AreEqual(expectedMessage, ex.Message);
         }
 
         [Test]
-        public void Setup_FromLineIsSmallerThanOne_ThrowsArgumentException()
+        public void Setup_FromLineIsSmallerThanOne_ThrowsErrorMessage()
         {
             var fromLine = -1;
             var toLine = 3;
-            Assert.Throws<ArgumentException>(() => _filePartReader.Setup("test.txt", fromLine, toLine));
+            var expectedMessage = "The given starting line is invalid.";
+
+            var ex = Assert.Throws<ArgumentException>(() => _filePartReader.Setup("test.txt", fromLine, toLine));
+
+            Assert.AreEqual(expectedMessage, ex.Message);
         }
     }
 }
