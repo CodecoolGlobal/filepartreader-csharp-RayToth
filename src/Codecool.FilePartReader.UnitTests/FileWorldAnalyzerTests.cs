@@ -21,7 +21,6 @@ namespace Codecool.FilePartReader.UnitTests
         [Test]
         public void GetStringsWhichPalindromes_ContainsPalindromes_ReturnPalindromesAsList()
         {
-            var defaultPath = string.Empty;
             var expected = new List<string>()
             {
                 "kajak",
@@ -54,10 +53,8 @@ namespace Codecool.FilePartReader.UnitTests
         [Test]
         public void GetWordsContainingSubstring_GivenSubstring_ReturnsListWithWordsContainingSubstring()
         {
-            var analyzer = new FileWordAnalyzer(_filePartReader);
-
             var subString = "ol";
-            var wordsWithSubstring = analyzer.GetWordsContainingSubstring(subString);
+            var wordsWithSubstring = _fileWorldAnalyzer.GetWordsContainingSubstring(subString);
             var expectedOutPut = new List<string>()
             {
                 "Codecool",
@@ -65,6 +62,15 @@ namespace Codecool.FilePartReader.UnitTests
             };
 
             Assert.AreEqual(expectedOutPut, wordsWithSubstring);
+        }
+
+        [Test]
+        public void GetWordsContainingSubstring_GivenSubstringWordIsNotFound_ReturnsEmptyList()
+        {
+            var subString = "honolulu";
+            var wordsWithSubstring = _fileWorldAnalyzer.GetWordsContainingSubstring(subString);
+
+            Assert.IsEmpty(wordsWithSubstring);
         }
     }
 }
