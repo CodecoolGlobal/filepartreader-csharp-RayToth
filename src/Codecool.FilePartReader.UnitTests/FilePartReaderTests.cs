@@ -25,13 +25,29 @@ namespace Codecool.FilePartReader.UnitTests
         }
 
         [Test]
+        public void Constructor_FileNotFound_ThrowsErrorMessage()
+        {
+            var filePath = "random.txt";
+            var fromLine = 1;
+            var toLine = 3;
+            var expectedMessage = "File not found.";
+
+            
+            var ex = Assert.Throws<FileNotFoundException>(() => _filePartReader.Setup(filePath, fromLine, toLine));
+
+            Assert.AreEqual(expectedMessage, ex.Message);
+
+        }
+
+        [Test]
         public void Setup_FromLineBiggerThanToLine_ThrowsErrorMessage()
         {
+            var filePath = "test.txt";
             var fromLine = 5;
             var toLine = 3;
             var expectedMessage = "The given starting line is invalid.";
 
-            var ex = Assert.Throws<ArgumentException>(() => _filePartReader.Setup("test.txt", fromLine, toLine));
+            var ex = Assert.Throws<ArgumentException>(() => _filePartReader.Setup(filePath, fromLine, toLine));
 
             Assert.AreEqual(expectedMessage, ex.Message);
         }
@@ -39,11 +55,12 @@ namespace Codecool.FilePartReader.UnitTests
         [Test]
         public void Setup_FromLineIsSmallerThanOne_ThrowsErrorMessage()
         {
+            var filePath = "test.txt";
             var fromLine = -1;
             var toLine = 3;
             var expectedMessage = "The given starting line is invalid.";
 
-            var ex = Assert.Throws<ArgumentException>(() => _filePartReader.Setup("test.txt", fromLine, toLine));
+            var ex = Assert.Throws<ArgumentException>(() => _filePartReader.Setup(filePath, fromLine, toLine));
 
             Assert.AreEqual(expectedMessage, ex.Message);
         }

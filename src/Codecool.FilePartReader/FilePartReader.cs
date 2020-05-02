@@ -44,6 +44,10 @@ namespace Codecool.FilePartReader
             {
                 throw new ArgumentException("The given starting line is invalid.");
             }
+            else if (!File.Exists(filePath))
+            {
+                throw new FileNotFoundException("File not found.");
+            }
             else
             {
                 FilePath = filePath;
